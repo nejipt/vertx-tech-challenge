@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    image: pt.dev.nejipt/vertx_tech_challenge:1.0.0
+    environment:
+      RECIPES_DB_URL: 'jdbc:mysql://localhost:3306/RecipesDB'
+      RECIPES_DB_USER: 'recipes'
+      RECIPES_DB_PW: 'sillyrecipespw'
+    ports:
+    - '8888:8888'
+  mysql:
+    image: mysql:8.0.25
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'RecipesDB'
+      MYSQL_USER: 'recipes'
+      MYSQL_PASSWORD: 'sillyrecipespw'
+      MYSQL_ROOT_PASSWORD: 'rootpw'
+    ports:
+      - '3306:3306'
+    volumes:
+      - recipes-db:/var/lib/mysql
+      - recipes-db-init-files:/docker-entrypoint-initdb.d
+
+volumes:
+  recipes-db:
+  recipes-db-init-files:

@@ -1,0 +1,67 @@
+= Vertx-tech-challenge
+
+image:https://img.shields.io/badge/vert.x-4.1.1-purple.svg[link="https://vertx.io"]
+
+This application was generated using http://start.vertx.io
+
+== Code explaination
+
+The way I organized the code:
+
+- *Controller* functions, would hold route validation
+
+- *Service* functions, would hold business logic
+
+- *Adapter* (or Repositories), would handle any interaction with data source
+
+The reason the *Adapters* follow a specific interface is in order to be able to change each implementation according to data source.
+
+In the case of *Controller* and *Service* functions I don't think it would make sense to implement different interfaces because business and route logic should be somewhat consistent.
+
+== Running
+
+To run use,
+
+```
+docker-compose up -d
+```
+
+the service application should be available in port 8888.
+
+== Incompletion
+
+Hit a roadblock using JDBC Vertx which was a requirement, even though I was following the documentation I would get an unexpected errors, even after adding a library that was mentioned to the project's dependencies.
+
+To achieve the challenge's completion I would add the functions to get data from DB (using prepared statements).
+
+I also included some tests where I wanted to manually mock some of my classes and test each layer individually and independently.
+
+Although since I didn't add any logic I'm merely testing if the correct functions are called.
+
+Later on I found out that there are frameworks that do that for me such as *Mockk* (for Kotlin), be that as it may I still rather leave it as is as it was part of self-learning.
+
+== Default vert.x README
+
+=== Building
+
+To launch your tests:
+```
+./mvnw clean test
+```
+
+To package your application:
+```
+./mvnw clean package
+```
+
+To run your application:
+```
+./mvnw clean compile exec:java
+```
+
+=== Help
+
+* https://vertx.io/docs/[Vert.x Documentation]
+* https://stackoverflow.com/questions/tagged/vert.x?sort=newest&pageSize=15[Vert.x Stack Overflow]
+* https://groups.google.com/forum/?fromgroups#!forum/vertx[Vert.x User Group]
+* https://gitter.im/eclipse-vertx/vertx-users[Vert.x Gitter]
